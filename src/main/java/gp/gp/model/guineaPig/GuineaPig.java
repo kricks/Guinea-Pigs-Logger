@@ -1,17 +1,15 @@
 package gp.gp.model.guineaPig;
 
-import java.util.Arrays;
-
 import gp.gp.model.cage.Cage;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="guinea_pig")
+@Table(name="guinea_pigs")
 public class GuineaPig {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long guinea_pig_id;
+	private Long guinea_pig_id;
 	
 	@Column(name="name", nullable=false)
 	private String name;
@@ -22,11 +20,8 @@ public class GuineaPig {
 	@Column(name="age", nullable=true)
 	private Integer age;
 	
-	@Column(name="cage_mate", nullable=true)
-	private String[] cageMate;
-	
 	@ManyToOne
-	@JoinColumn(name="cart_id", nullable=false)
+	@JoinColumn(name="cage_id", nullable=false)
 	private Cage cage;
 
 	public GuineaPig() {
@@ -38,16 +33,14 @@ public class GuineaPig {
 	 * @param name
 	 * @param breed
 	 * @param age
-	 * @param cageMate
 	 * @param cage
 	 */
-	public GuineaPig(long guinea_pig_id, String name, String breed, Integer age, String[] cageMate, Cage cage) {
+	public GuineaPig(long guinea_pig_id, String name, String breed, Integer age, Cage cage) {
 		super();
 		this.guinea_pig_id = guinea_pig_id;
 		this.name = name;
 		this.breed = breed;
 		this.age = age;
-		this.cageMate = cageMate;
 		this.cage = cage;
 	}
 
@@ -108,20 +101,6 @@ public class GuineaPig {
 	}
 
 	/**
-	 * @return the cageMate
-	 */
-	public String[] getCageMate() {
-		return cageMate;
-	}
-
-	/**
-	 * @param cageMate the cageMate to set
-	 */
-	public void setCageMate(String[] cageMate) {
-		this.cageMate = cageMate;
-	}
-
-	/**
 	 * @return the cage
 	 */
 	public Cage getCage() {
@@ -138,7 +117,7 @@ public class GuineaPig {
 	@Override
 	public String toString() {
 		return "GuineaPig [guinea_pig_id=" + guinea_pig_id + ", name=" + name + ", breed=" + breed + ", age=" + age
-				+ ", cageMate=" + Arrays.toString(cageMate) + ", cage=" + cage + "]";
+				 + ", cage=" + cage + "]";
 	}
 
 }

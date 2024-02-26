@@ -1,8 +1,5 @@
 package gp.gp.model.cage;
 
-import java.util.Set;
-
-import gp.gp.model.guineaPig.GuineaPig;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +8,7 @@ public class Cage {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long cart_id;
+	private Long cage_id;
 	
 	@Column(name="name", nullable=false)
 	private String name;
@@ -19,39 +16,34 @@ public class Cage {
 	@Column(name="description", nullable=true)
 	private String description;
 	
-	@OneToMany(mappedBy="cage")
-	private Set<GuineaPig> guineaPig;
-	
 	public Cage() {
 		super();
 	}
 
 	/**
-	 * @param cart_id
+	 * @param cage_id
 	 * @param name
 	 * @param description
-	 * @param guineaPig
 	 */
-	public Cage(long cart_id, String name, String description, Set<GuineaPig> guineaPig) {
+	public Cage(Long cage_id, String name, String description) {
 		super();
-		this.cart_id = cart_id;
+		this.cage_id = cage_id;
 		this.name = name;
 		this.description = description;
-		this.guineaPig = guineaPig;
 	}
 
 	/**
-	 * @return the cart_id
+	 * @return the cage_id
 	 */
-	public long getCart_id() {
-		return cart_id;
+	public Long getCage_id() {
+		return cage_id;
 	}
 
 	/**
-	 * @param cart_id the cart_id to set
+	 * @param cage_id the cage_id to set
 	 */
-	public void setCart_id(long cart_id) {
-		this.cart_id = cart_id;
+	public void setCage_id(Long cage_id) {
+		this.cage_id = cage_id;
 	}
 
 	/**
@@ -82,25 +74,9 @@ public class Cage {
 		this.description = description;
 	}
 
-	/**
-	 * @return the guineaPig
-	 */
-	public Set<GuineaPig> getGuineaPig() {
-		return guineaPig;
-	}
-
-	/**
-	 * @param guineaPig the guineaPig to set
-	 */
-	public void setGuineaPig(Set<GuineaPig> guineaPig) {
-		this.guineaPig = guineaPig;
-	}
-
 	@Override
 	public String toString() {
-		return "Cage [cart_id=" + cart_id + ", name=" + name + ", description=" + description + ", guineaPig="
-				+ guineaPig + "]";
-	}
-	
+		return "Cage [cage_id=" + cage_id + ", name=" + name + ", description=" + description  + "]";
+	}	
 
 }
